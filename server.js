@@ -28,6 +28,6 @@ function onRequest(req, res){
 }
 
 function onListening(){
-	console.log("El servidor esta escuchando en el puerto: " + port)
+	console.log(`El servidor esta escuchando en el puerto ${port}`)
 }
 
