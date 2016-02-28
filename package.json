@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Kirbo92/animate-server/issues"
   },
-  "homepage": "https://github.com/Kirbo92/animate-server#readme"
+  "homepage": "https://github.com/Kirbo92/animate-server#readme",
+  "dependencies": {
+    "st": "^1.1.0"
+  }
 }
