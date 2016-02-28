@@ -14,10 +14,6 @@ server.on('listening', onListening)
 
 server.listen(port)
 
-
-
-
-
 function onListening(){
 	console.log(`El servidor esta escuchando en el puerto ${port}`)
 }
