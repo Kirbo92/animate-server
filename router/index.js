@@ -19,8 +19,6 @@ function onRequest (req, res){
 			res.statusCode = 404
 			res.end(`404 not found: ${uri}`)
 		})
-
-		
 	})
 }
 
