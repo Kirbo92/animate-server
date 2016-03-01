@@ -7,6 +7,7 @@ const async = require('async')
 const uuid = require('uuid')
 const dataURIBuffer = require('data-uri-to-buffer')
 const EventEmitter = require('events').EventEmitter
+const listFiles = require('./list')
 
 module.exports = function (images) {
   let events = new EventEmitter()
