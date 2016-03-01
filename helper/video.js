@@ -46,7 +46,25 @@ module.exports = function (images) {
   }
 
   function cleanup(done) {
-  	done()
+  	events.emit('log', 'Cleaning up')
+
+  	listFiles(tmpDir, baseName, function (err, files){
+  		if (err) return done(err)
+
+  		deleteFiles(files,done)
+  	})
+  }
+
+  function deleteFiles(files, done) {
+  	async.each(files, deleteFile, done)
+  }
+
+  function deleteFile(file, done) {
+  	events.emit('log', `Deleting ${file}`)
+
+  	fs.unlink(path.join(tmpDir, file), function (err){
+  		done()
+  	})
   }
 
   function convertFinished(err) {
