@@ -21,8 +21,8 @@ module.exports = function (images) {
   async.series([
     decodeImages,
     createVideo,
-    encodeVideo
-    //cleanup
+    encodeVideo,
+    cleanup
   ], convertFinished)
 
   function decodeImages(done) {
@@ -48,16 +48,18 @@ module.exports = function (images) {
     }, done)
   }
 
-  function encodeVideo(done) {
-  	let fileName = `${baseName}.webm`
-  	let rs = fs.createReadStream(path.join(tmpDir, fileName))
+  function encodeVideo (done) {
+    let fileName = `${baseName}.webm`
+    let rs = fs.createReadStream(path.join(tmpDir, fileName))
 
-  	rs.pipe(concat(function (videoBuffer) {
-  		video = `data:video/webm;base64, ${videoBuffer.toString('base64')}`
-  		done()
-  	}))
+    events.emit('log', `Encoding video ${fileName}`)
 
-  	rs.on('error', done)
+    rs.pipe(concat(function (videoBuffer) {
+      video = `data:video/webm;base64,${videoBuffer.toString('base64')}`
+      done()
+    }))
+
+    rs.on('error', done)
   }
 
   function cleanup(done) {
